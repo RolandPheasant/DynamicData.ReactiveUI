@@ -22,8 +22,9 @@ namespace DynamicData.ReactiveUI
         /// or
         /// target
         /// </exception>
-        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source,IReactiveList<TObject> target, 
-            int resetThreshold=25)
+        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(
+            this IObservable<IChangeSet<TObject, TKey>> source, IReactiveList<TObject> target,
+            int resetThreshold = 25)
         {
             if (target == null) throw new ArgumentNullException("target");
 
@@ -41,7 +42,8 @@ namespace DynamicData.ReactiveUI
         /// <param name="updater">The updater.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">source</exception>
-        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source,
+        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(
+            this IObservable<IChangeSet<TObject, TKey>> source,
             IChangeSetAdaptor<TObject, TKey> updater)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -82,7 +84,7 @@ namespace DynamicData.ReactiveUI
                 );
         }
 
-                /// <summary>
+        /// <summary>
         /// Populate and maintain the specified reactive list from the source observable changeset
         /// </summary>
         /// <typeparam name="TObject">The type of the object.</typeparam>
@@ -96,8 +98,9 @@ namespace DynamicData.ReactiveUI
         /// or
         /// target
         /// </exception>
-        public static IObservable<ISortedChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<ISortedChangeSet<TObject, TKey>> source, ReactiveList<TObject> target, 
-            int resetThreshold=25)
+        public static IObservable<ISortedChangeSet<TObject, TKey>> Bind<TObject, TKey>(
+            this IObservable<ISortedChangeSet<TObject, TKey>> source, ReactiveList<TObject> target,
+            int resetThreshold = 25)
         {
             if (target == null) throw new ArgumentNullException("target");
 
@@ -106,7 +109,7 @@ namespace DynamicData.ReactiveUI
 
         }
 
-       /// <summary>
+        /// <summary>
         /// Binds the results using the specified sorted changeset adaptor
         /// </summary>
         /// <typeparam name="TObject">The type of the object.</typeparam>
@@ -115,7 +118,8 @@ namespace DynamicData.ReactiveUI
         /// <param name="updater">The updater.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">source</exception>
-        public static IObservable<ISortedChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<ISortedChangeSet<TObject, TKey>> source,
+        public static IObservable<ISortedChangeSet<TObject, TKey>> Bind<TObject, TKey>(
+            this IObservable<ISortedChangeSet<TObject, TKey>> source,
             ISortedChangeSetAdaptor<TObject, TKey> updater)
         {
             if (source == null) throw new ArgumentNullException("source");
@@ -155,6 +159,5 @@ namespace DynamicData.ReactiveUI
                 }
                 );
         }
-    }
     }
 }
