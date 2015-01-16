@@ -9,10 +9,10 @@ namespace DynamicData.ReactiveUI
     public class SortedReactiveListAdaptor<TObject, TKey> : ISortedChangeSetAdaptor<TObject, TKey>
     {
         private IDictionary<TKey, TObject> _data;
-        private readonly IReactiveList<TObject> _target;
+        private readonly ReactiveList<TObject> _target;
         private readonly int _resetThreshold;
         
-        public SortedReactiveListAdaptor(IReactiveList<TObject> target, int resetThreshold = 50)
+        public SortedReactiveListAdaptor(ReactiveList<TObject> target, int resetThreshold = 50)
         {
             if (target == null) throw new ArgumentNullException("target");
             _target = target;
@@ -97,17 +97,21 @@ namespace DynamicData.ReactiveUI
                 switch (change.Reason)
                 {
                     case ChangeReason.Add:
-                        _target.Add(change.Current);
+                        _target.Insert(change.CurrentIndex, change.Current);
                         break;
                     case ChangeReason.Remove:
-                        _target.Remove(change.Current);
+                        _target.RemoveAt(change.CurrentIndex);
+                        break;
+                    case ChangeReason.Moved:
+                        _target.Move(change.PreviousIndex, change.CurrentIndex);
                         break;
                     case ChangeReason.Update:
-                    {
-                        _target.Remove(change.Previous.Value);
-                        _target.Add(change.Current);
-                    }
+                        {
+                            _target.RemoveAt(change.PreviousIndex);
+                            _target.Insert(change.CurrentIndex, change.Current);
+                        }
                         break;
+
                 }
             }
 
