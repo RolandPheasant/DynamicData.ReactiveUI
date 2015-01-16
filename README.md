@@ -1,4 +1,4 @@
 # DynamicData.ReactiveUI
-Adaptors use to integrate Dynamic Data with ReactiveUI
+Adaptors used to integrate Dynamic Data with ReactiveUI
 
-Coming to you soon...
+Fluent updating of reactive list from dynamic data streams. Coming to you soon...
