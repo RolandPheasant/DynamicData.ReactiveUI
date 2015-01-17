@@ -15,7 +15,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{BD5DCF3F-B3EC-4278-BDB4-3793D8878709}"
 	ProjectSection(SolutionItems) = preProject
 		DynamicData.ReactiveUI.build = DynamicData.ReactiveUI.build
-		DynamicData.ReactiveUI.nuspec = DynamicData.ReactiveUI.nuspec
 	EndProjectSection
 EndProject
 Global
