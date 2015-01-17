@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6FA336A4-9540-428A-B56C-8BA5C6B67A8F}"
 	ProjectSection(SolutionItems) = preProject
 		DynamicData.ReactiveUI.nuspec = DynamicData.ReactiveUI.nuspec
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
