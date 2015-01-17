@@ -78,7 +78,6 @@ namespace DynamicData.ReactiveUI
                         adaptor.Dispose();
                         subscriber.Dispose();
                         connected.Dispose();
-                        subscriber.Dispose();
                     });
                 }
                 );
@@ -154,7 +153,6 @@ namespace DynamicData.ReactiveUI
                         adaptor.Dispose();
                         subscriber.Dispose();
                         connected.Dispose();
-                        subscriber.Dispose();
                     });
                 }
                 );
