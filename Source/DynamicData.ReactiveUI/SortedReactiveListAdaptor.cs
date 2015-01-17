@@ -91,7 +91,6 @@ namespace DynamicData.ReactiveUI
 
         private void DoUpdate(IChangeSet<TObject, TKey> changes)
         {
-
             foreach (var change in changes)
             {
                 switch (change.Reason)
@@ -111,7 +110,6 @@ namespace DynamicData.ReactiveUI
                             _target.Insert(change.CurrentIndex, change.Current);
                         }
                         break;
-
                 }
             }
 
