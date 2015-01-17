@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DynamicData.ReactiveUI</id>
+    <version>0.0.0</version>
+    <title>Dynamic Data adapators for ReactiveUI</title>
+    <authors>Roland Pheasant</authors>
+    <copyright>Roland Pheasant</copyright>
+    <projectUrl>http://dynamicdataproject.wordpress.com</projectUrl>
+    <owners>Roland Pheasant</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Integrate dynamic data observables with ReactiveUI
+    </description>
+    <tags>ReactiveUI DynamicData Dynamic Data Rx Reactive Observable Cache Binding ObservableCache ObservableCollection Collection Linq</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\DynamicData.ReactiveUI.dll" target="lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll" />
+  </files>
+</package>
