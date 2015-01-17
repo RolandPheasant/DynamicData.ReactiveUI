@@ -6,12 +6,23 @@ using ReactiveUI;
 
 namespace DynamicData.ReactiveUI
 {
+    /// <summary>
+    /// Adaptor used to populate a <see cref="ReactiveList{TObject}"/> from an observable sortedchangeset.
+    /// </summary>
+    /// <typeparam name="TObject">The type of the object.</typeparam>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
     public class SortedReactiveListAdaptor<TObject, TKey> : ISortedChangeSetAdaptor<TObject, TKey>
     {
         private IDictionary<TKey, TObject> _data;
         private readonly ReactiveList<TObject> _target;
         private readonly int _resetThreshold;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SortedReactiveListAdaptor{TObject, TKey}"/> class.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="resetThreshold">The reset threshold.</param>
+        /// <exception cref="System.ArgumentNullException">target</exception>
         public SortedReactiveListAdaptor(ReactiveList<TObject> target, int resetThreshold = 50)
         {
             if (target == null) throw new ArgumentNullException("target");
@@ -19,6 +30,10 @@ namespace DynamicData.ReactiveUI
             _resetThreshold = resetThreshold;
         }
 
+        /// <summary>
+        /// Adapts the specified sorted changeset
+        /// </summary>
+        /// <param name="changes">The changes.</param>
         public void Adapt(ISortedChangeSet<TObject, TKey> changes)
         {
             Clone(changes);

@@ -7,7 +7,6 @@ namespace DynamicData.ReactiveUI
 {
     public static class DynamicDataEx
     {
-
         /// <summary>
         /// Populate and maintain the specified reactive list from the source observable changeset
         /// </summary>
@@ -69,7 +68,6 @@ namespace DynamicData.ReactiveUI
                         observer.OnError, observer.OnCompleted);
 
                     var connected = published.Connect();
-
                     var subscriber = published.SubscribeSafe(observer);
 
                     return Disposable.Create(() =>
@@ -139,8 +137,7 @@ namespace DynamicData.ReactiveUI
                         {
                             observer.OnError(ex);
                         }
-                    },
-                        observer.OnError, observer.OnCompleted);
+                    },observer.OnError, observer.OnCompleted);
 
                     var connected = published.Connect();
 
