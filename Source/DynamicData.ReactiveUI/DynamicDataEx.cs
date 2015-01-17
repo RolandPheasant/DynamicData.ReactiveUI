@@ -64,7 +64,6 @@ namespace DynamicData.ReactiveUI
                         catch (Exception ex)
                         {
                             observer.OnError(ex);
-                            observer.OnCompleted();
                         }
                     },
                         observer.OnError, observer.OnCompleted);
@@ -139,7 +138,6 @@ namespace DynamicData.ReactiveUI
                         catch (Exception ex)
                         {
                             observer.OnError(ex);
-                            observer.OnCompleted();
                         }
                     },
                         observer.OnError, observer.OnCompleted);
