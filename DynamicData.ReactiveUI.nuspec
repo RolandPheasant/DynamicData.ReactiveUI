@@ -15,6 +15,6 @@
     <tags>ReactiveUI DynamicData Dynamic Data Rx Reactive Observable Cache Binding ObservableCache ObservableCollection Collection Linq</tags>
   </metadata>
   <files>
-    <file src="Source\bin\Release\DynamicData.ReactiveUI.dll" target="lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll" />
+    <file src="\Source\DynamicData.ReactiveUI\bin\Release\DynamicData.ReactiveUI.dll" target="lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll" />
   </files>
 </package>
