@@ -1,12 +1,12 @@
-# DynamicData.ReactiveUI
+## DynamicData.ReactiveUI
 
 This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveui’s ReactiveList object.
 
-# What is dynamic data?
+### What is dynamic data?
 
 Dynamic data is rx for collections or more precisely observable changesets which handle adds, updates and removes. See  https://github.com/RolandPheasant/DynamicData for more details and source code.
 
-# What are the benefits of the integrating between Dynamic Data and ReactiveUI
+### What are the benefits of the integrating between Dynamic Data and ReactiveUI
 
 Dynamic data has in the region of 40 collection specific operators and ReactiveUI rocks so why not get the best of both worlds. Look at the following code.
 
