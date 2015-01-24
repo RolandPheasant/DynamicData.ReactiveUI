@@ -1,6 +1,6 @@
-## DynamicData.ReactiveUI
+## Dynamic Data / ReactiveUI Adaptor
 
-This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveui’s ReactiveList object.
+This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveui’s ReactiveList object. Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
 
 ### What is dynamic data?
 
@@ -21,9 +21,9 @@ var myoperation = somedynamicdatasource
 					.DisposeMany()
 					.Subscribe()
 ```
-As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and  the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
+As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
-That was easy yet powerful.
+That was easy, declaratuve and powerful.
 
 Alternatively another root into the dynamic data sub system would be as follows:
 ```csharp
@@ -32,7 +32,9 @@ var myoperation = list.ToObservableChangeSet()
                      .Filter(trade=>trade.Status == TradeStatus.Live) 
                      // ... etc
 ```
-Ok, I know ReactiveUI has DerivedReactiveList but dynamic data is DerivedReactiveList on steriods. I will as soon as I get the time document everything. In the meantime I have started putting together a wpf demo to illustate the usage and the capability of dynamic data https://github.com/RolandPheasant/TradingDemo
+Ok, I know ReactiveUI has DerivedReactiveList but dynamic data is DerivedReactiveList on steriods. Binding is just a small part of it.
+
+I will as soon as I get the time document everything. In the meantime I have started putting together a wpf demo to illustate the usage and the capability of dynamic data https://github.com/RolandPheasant/TradingDemo
 
 
 
