@@ -40,11 +40,12 @@
     <Compile Include="DynamicDataEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactiveListAdaptor.cs" />
+    <Compile Include="ReactiveListEx.cs" />
     <Compile Include="SortedReactiveListAdaptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamicData">
-      <HintPath>..\..\packages\DynamicData.3.1.1.221\lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll</HintPath>
+      <HintPath>..\..\packages\DynamicData.3.2.0.1001\lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll</HintPath>
     </Reference>
     <Reference Include="ReactiveUI">
       <HintPath>..\..\packages\reactiveui-core.6.3.1\lib\Portable-Net45+Win8+WP8+WPA81\ReactiveUI.dll</HintPath>
