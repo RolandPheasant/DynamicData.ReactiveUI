@@ -21,7 +21,7 @@ var myoperation = somedynamicdatasource
 					.DisposeMany()
 					.Subscribe()
 ```
-As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and  the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed. 
+As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and  the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
 That was easy yet powerful.
 
@@ -32,7 +32,7 @@ var myoperation = list.ToObservableChangeSet()
                      .Filter(trade=>trade.Status == TradeStatus.Live) 
                      // ... etc
 ```
-Ok, I know ReactiveUI has DerivedReactiveList but dynamic data is DerivedReactiveList on steriods. I will as soon as I get the time document everything. In the meantime I have started putting together a wpf demo to illustate the usage and the capability of dynamic data https://github.com/RolandPheasant/TradindDemo
+Ok, I know ReactiveUI has DerivedReactiveList but dynamic data is DerivedReactiveList on steriods. I will as soon as I get the time document everything. In the meantime I have started putting together a wpf demo to illustate the usage and the capability of dynamic data https://github.com/RolandPheasant/TradingDemo
 
 
 
