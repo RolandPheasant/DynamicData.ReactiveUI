@@ -23,7 +23,7 @@ var myoperation = somedynamicdatasource
 ```
 As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
-That was easy, declaratuve and powerful.
+That was easy, declarative and powerful.
 
 Alternatively another root into the dynamic data sub system would be as follows:
 ```csharp
