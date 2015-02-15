@@ -21,10 +21,10 @@ namespace DynamicData.ReactiveUI
         /// or
         /// target
         /// </exception>
-        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(
-            this IObservable<IChangeSet<TObject, TKey>> source, IReactiveList<TObject> target,
+        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source, IReactiveList<TObject> target,
             int resetThreshold = 25)
         {
+            if (source == null) throw new ArgumentNullException("source");
             if (target == null) throw new ArgumentNullException("target");
 
             var adaptor = new ReactiveListAdaptor<TObject, TKey>(target, resetThreshold);
@@ -41,8 +41,7 @@ namespace DynamicData.ReactiveUI
         /// <param name="updater">The updater.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">source</exception>
-        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(
-            this IObservable<IChangeSet<TObject, TKey>> source,
+        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source,
             IChangeSetAdaptor<TObject, TKey> updater)
         {
             if (source == null) throw new ArgumentNullException("source");

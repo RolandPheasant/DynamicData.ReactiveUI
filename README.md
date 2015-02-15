@@ -8,7 +8,7 @@ Dynamic data is rx for collections or more precisely observable changesets which
 
 ### What are the benefits of the integration between Dynamic Data and ReactiveUI
 
-Dynamic data has in the region of 40 collection specific operators and ReactiveUI rocks so why not get the best of both worlds. Look at the following code.
+Dynamic data has in the region of 50 collection specific operators and ReactiveUI rocks so why not get the best of both worlds. Look at the following code.
 
 ```csharp
 var list = new ReactiveList<TradeProxy>();
