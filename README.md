@@ -1,6 +1,8 @@
 ## Dynamic Data / ReactiveUI Adaptor
 
-This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveui’s ReactiveList object. Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
+[![Join the chat at https://gitter.im/RolandPheasant/DynamicData.ReactiveUI](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RolandPheasant/DynamicData.ReactiveUI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveuiï¿½s ReactiveList object. Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
 
 ### What is dynamic data?
 
