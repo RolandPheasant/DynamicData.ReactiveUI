@@ -6,8 +6,9 @@
     <title>Dynamic Data adaptors for ReactiveUI</title>
     <authors>Roland Pheasant</authors>
     <copyright>Roland Pheasant</copyright>
-    <projectUrl>http://dynamicdataproject.wordpress.com</projectUrl>
+    <projectUrl>http://dynamic-data.org</projectUrl>
     <owners>Roland Pheasant</owners>
+    <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       Integrate dynamic data observables with ReactiveUI
