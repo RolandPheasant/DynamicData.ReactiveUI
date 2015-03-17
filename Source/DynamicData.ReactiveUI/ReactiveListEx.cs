@@ -13,15 +13,14 @@ namespace DynamicData.ReactiveUI
     /// </summary>
     public static class ReactiveListEx
     {
-	    /// <summary>
-	    /// Convert an observable collection into a dynamic stream of change sets, using the hash code as the object's key
-	    /// </summary>
-	    /// <typeparam name="TObject">The type of the object.</typeparam>
-	    /// <typeparam name="T"></typeparam>
-	    /// <param name="source">The source.</param>
-	    /// <returns></returns>
-	    /// <exception cref="System.ArgumentNullException">source</exception>
-	    public static IObservable<IChangeSet<T>> ToObservableChangeSet<T>(this  IReactiveCollection<T> source)
+		/// <summary>
+		/// Convert an observable collection into a dynamic stream of change sets, using the hash code as the object's key
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source">The source.</param>
+		/// <returns></returns>
+		/// <exception cref="System.ArgumentNullException">source</exception>
+		public static IObservable<IChangeSet<T>> ToObservableChangeSet<T>(this  IReactiveCollection<T> source)
         {
 			return Observable.Create<IChangeSet<T>>
 				(
@@ -79,9 +78,7 @@ namespace DynamicData.ReactiveUI
 							.Select(updates => (IChangeSet<T>)new ChangeSet<T>(updates));
 
 						var initialChanges = initialChangeSet();
-						var cacheLoader = Observable.Return(initialChanges).Concat(sourceUpdates)
-							.Subscribe(changes => cloneOfList.Edit(updater => updater.Clone(changes)));
-						//.PopulateInto(cloneOfList);
+						var cacheLoader = Observable.Return(initialChanges).Concat(sourceUpdates).PopulateInto(cloneOfList);
 						var subscriber = cloneOfList.Connect().SubscribeSafe(observer);
 						return new CompositeDisposable(cacheLoader, subscriber, cloneOfList);
 					});
