@@ -6,7 +6,7 @@ using ReactiveUI;
 
 namespace DynamicData.ReactiveUI.Tests.Fixtures
 {
-    [TestFixture]
+	[TestFixture]
     public class ObservableCollectionToObservableChangeSetFixture
     {
         private ReactiveList<Person> _collection;

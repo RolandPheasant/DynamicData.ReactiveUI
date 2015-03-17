@@ -11,9 +11,13 @@
     <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
-      Integrate dynamic data observables with ReactiveUI
+      Make reactive ui even more powerful by integrating with dynamic data and making use of it's numerious operators. Dynamic data provides an observable cache and an observable list with at least 50 collection specific operators for each.
+
     </description>
-    <tags>ReactiveUI DynamicData Dynamic Data Rx Reactive Observable Cache Binding ObservableCache ObservableCollection Collection Linq</tags>
+	  <summary>
+		  Integrate dynamic data observables with ReactiveUI
+	  </summary>
+    <tags>ReactiveUI DynamicData Dynamic Data Rx Reactive Extensions Observable Cache Binding ObservableCache ObservableList ObservableCollection Collection Linq</tags>
   </metadata>
   <files>
     <file src="bin\Release\DynamicData.ReactiveUI.dll" target="lib\portable-net45+winrt45+wp8+wpa81\DynamicData.dll" />
