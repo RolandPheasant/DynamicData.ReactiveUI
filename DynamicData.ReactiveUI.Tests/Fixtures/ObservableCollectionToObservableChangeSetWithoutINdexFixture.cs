@@ -14,6 +14,9 @@ namespace DynamicData.ReactiveUI.Tests.Fixtures
 		private readonly RandomPersonGenerator _generator = new RandomPersonGenerator();
 
 
+		/// <summary>
+		/// Sets up.
+		/// </summary>
 		[SetUp]
 		public void SetUp()
 		{

@@ -21,7 +21,7 @@ namespace DynamicData.ReactiveUI
         /// or
         /// target
         /// </exception>
-        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source, IReactiveList<TObject> target,
+        public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source, ReactiveList<TObject> target,
             int resetThreshold = 25)
         {
             if (source == null) throw new ArgumentNullException("source");

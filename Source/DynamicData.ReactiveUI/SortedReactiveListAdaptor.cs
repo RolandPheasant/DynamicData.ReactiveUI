@@ -13,7 +13,6 @@ namespace DynamicData.ReactiveUI
     /// <typeparam name="TKey">The type of the key.</typeparam>
     public class SortedReactiveListAdaptor<TObject, TKey> : ISortedChangeSetAdaptor<TObject, TKey>
     {
-        private IDictionary<TKey, TObject> _data;
         private readonly ReactiveList<TObject> _target;
         private readonly int _resetThreshold;
 
@@ -36,7 +35,6 @@ namespace DynamicData.ReactiveUI
         /// <param name="changes">The changes.</param>
         public void Adapt(ISortedChangeSet<TObject, TKey> changes)
         {
-            Clone(changes);
 
             switch (changes.SortedItems.SortReason)
             {
@@ -77,29 +75,6 @@ namespace DynamicData.ReactiveUI
 
                 default:
                     throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void Clone(IChangeSet<TObject, TKey> changes)
-        {
-            //for efficiency resize dictionary to initial batch size
-            if (_data == null || _data.Count == 0)
-                _data = new Dictionary<TKey, TObject>(changes.Count);
-
-            foreach (var item in changes)
-            {
-                switch (item.Reason)
-                {
-                    case ChangeReason.Update:
-                    case ChangeReason.Add:
-                    {
-                        _data[item.Key] = item.Current;
-                    }
-                        break;
-                    case ChangeReason.Remove:
-                        _data.Remove(item.Key);
-                        break;
-                }
             }
         }
 
