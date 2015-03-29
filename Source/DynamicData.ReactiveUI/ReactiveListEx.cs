@@ -20,7 +20,7 @@ namespace DynamicData.ReactiveUI
 		/// <param name="source">The source.</param>
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">source</exception>
-		public static IObservable<IChangeSet<T>> ToObservableChangeSet<T>(this  IReactiveCollection<T> source)
+		public static IObservable<IChangeSet<T>> ToObservableChangeSet<T>(this  ReactiveList<T> source)
         {
 			return Observable.Create<IChangeSet<T>>
 				(
@@ -28,7 +28,7 @@ namespace DynamicData.ReactiveUI
 					{
 						Func<ChangeSet<T>> initialChangeSet = () =>
 						{
-							var items = source.Select((t, index) => new Change<T>(ChangeReason.Add, t, index));
+							var items = source.Select((t, index) => new Change<T>(ListChangeReason.Add, t, index));
 							return new ChangeSet<T>(items);
 						};
 
@@ -49,11 +49,11 @@ namespace DynamicData.ReactiveUI
 									{
 										case NotifyCollectionChangedAction.Add:
 											return changes.NewItems.OfType<T>()
-												.Select((t, index) => new Change<T>(ChangeReason.Add, t, index + changes.NewStartingIndex));
+												.Select((t, index) => new Change<T>(ListChangeReason.Add, t, index + changes.NewStartingIndex));
 
 										case NotifyCollectionChangedAction.Remove:
 											return changes.OldItems.OfType<T>()
-												.Select((t, index) => new Change<T>(ChangeReason.Remove, t, index + changes.OldStartingIndex));
+												.Select((t, index) => new Change<T>(ListChangeReason.Remove, t, index + changes.OldStartingIndex));
 
 										case NotifyCollectionChangedAction.Replace:
 											{
@@ -61,13 +61,13 @@ namespace DynamicData.ReactiveUI
 													.Select((t, idx) =>
 													{
 														var old = changes.OldItems[idx];
-														return new Change<T>(ChangeReason.Update, t, (T)old, idx, idx);
+														return new Change<T>(ListChangeReason.Update, t, (T)old, idx, idx);
 													});
 											}
 										case NotifyCollectionChangedAction.Reset:
 											{
 												//Clear all from the cache and reload
-												var removes = source.Select((t, index) => new Change<T>(ChangeReason.Remove, t, index)).Reverse();
+												var removes = source.Select((t, index) => new Change<T>(ListChangeReason.Remove, t, index)).Reverse();
 												return removes.Concat(initialChangeSet());
 											}
 										default:
@@ -95,7 +95,7 @@ namespace DynamicData.ReactiveUI
         /// <exception cref="System.ArgumentNullException">source
         /// or
         /// keySelector</exception>
-        public static IObservable<IChangeSet<TObject, TKey>> ToObservableChangeSet<TObject, TKey>(this  IReactiveCollection<TObject> source, Func<TObject, TKey> keySelector)
+        public static IObservable<IChangeSet<TObject, TKey>> ToObservableChangeSet<TObject, TKey>(this  ReactiveList<TObject> source, Func<TObject, TKey> keySelector)
         {
             if (source == null) throw new ArgumentNullException("source");
             if (keySelector == null) throw new ArgumentNullException("keySelector");

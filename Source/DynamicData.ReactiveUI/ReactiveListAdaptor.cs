@@ -22,7 +22,7 @@ namespace DynamicData.ReactiveUI
         /// <param name="target">The target.</param>
         /// <param name="resetThreshold">The reset threshold.</param>
         /// <exception cref="System.ArgumentNullException">target</exception>
-        public ReactiveListAdaptor(IReactiveList<TObject> target, int resetThreshold = 50)
+        public ReactiveListAdaptor(ReactiveList<TObject> target, int resetThreshold = 50)
         {
             if (target == null) throw new ArgumentNullException("target");
             _target = target;
