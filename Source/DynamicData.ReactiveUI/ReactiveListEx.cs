@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using DynamicData.Kernel;
 using ReactiveUI;
 
 namespace DynamicData.ReactiveUI
