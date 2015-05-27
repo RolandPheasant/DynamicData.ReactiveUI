@@ -70,7 +70,7 @@ namespace DynamicData.ReactiveUI.Tests.Fixtures
 		[Test]
 		public void Replace()
 		{
-			//NB: the following is a replace bcause the hash code of user is calculated from the user name
+			//NB: the following is a replace because the hash code of user is calculated from the user name
 			var person = new Person("Adult1", 50);
 			var replaced = new Person("Adult1", 50);
 			_collection.Add(person);

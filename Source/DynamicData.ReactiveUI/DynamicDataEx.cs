@@ -1,12 +1,39 @@
 ﻿using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using DynamicData.Annotations;
 using ReactiveUI;
 
 namespace DynamicData.ReactiveUI
 {
     public static class DynamicDataEx
     {
+
+
+        /// <summary>
+        /// Binds a clone of the observable changeset to the target ReactiveList
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="targetCollection">The target collection.</param>
+        /// <param name="resetThreshold">The reset threshold.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// source
+        /// or
+        /// targetCollection
+        /// </exception>
+        public static IObservable<IChangeSet<T>> Bind<T>([NotNull] this IObservable<IChangeSet<T>> source,
+            [NotNull] ReactiveList<T> targetCollection, int resetThreshold = 25)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+            if (targetCollection == null) throw new ArgumentNullException("targetCollection");
+
+            var adaptor = new ReactiveListAdaptor<T>(targetCollection, resetThreshold);
+            return source.Adapt(adaptor);
+        }
+
+
         /// <summary>
         /// Populate and maintain the specified reactive list from the source observable changeset
         /// </summary>
