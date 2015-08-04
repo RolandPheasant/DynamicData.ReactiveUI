@@ -1,28 +1,54 @@
-## Dynamic Data / ReactiveUI Adaptor
 
-[![Join the chat at https://gitter.im/RolandPheasant/DynamicData.ReactiveUI](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RolandPheasant/DynamicData.ReactiveUI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/22ywek7rlteq28go/branch/develop?svg=true)](https://ci.appveyor.com/project/RolandPheasant/dynamicdata-reactiveui/branch/develop)
+## Dynamic Data / ReactiveUI Integration
 
 
-This is a very simple adaptor layer to assist with binding dynamic data observables with reactiveui�s ReactiveList object. Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
+Contact me any time on [![Join the chat at https://gitter.im/RolandPheasant/DynamicData](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RolandPheasant/DynamicData?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Master build [![Build status](https://ci.appveyor.com/api/projects/status/22ywek7rlteq28go/branch/develop?svg=true)](https://ci.appveyor.com/project/RolandPheasant/dynamicdata-reactiveui/branch/develop)
+Sample wpf project https://github.com/RolandPheasant/Dynamic.Trader
+Blog at  http://dynamic-data.org/
+Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
 
-### What is dynamic data?
 
-Dynamic data is rx for collections or more precisely observable changesets which handle adds, updates and removes. See  https://github.com/RolandPheasant/DynamicData for more details and source code.
+### What is this library?
 
+[ReactiveUI](https://github.com/reactiveui/ReactiveUI) is a powerful MVVM framework based on Rx.
+[Dynamic Data](https://github.com/RolandPheasant/DynamicData) is a portable class library based on Rx and provides an observable list and an observable cache. There have a very rich set of collection specific operators.
+
+This library plugs dynamic data into reactive ui to give you the power the power of both.
+
+###  Create a dynamic data source
+
+Create an observable list.
+```
+var list = new SourceList<T>();
+var observableChanges = list.Connect();
+```
+or create an observable cache.
+```
+var cache = new SourceCache<TObject,TKey>(t=>t.Key);
+var observableChanges = cache.Connect();
+```
+and that is that. You have a thread safe data source which either of which become observable by calling ```.Connect()```. The connect method has dozens of collection specified composable and fluent operators.
+
+###  Create a dynamic data source from  ReactiveList
+
+```
+var list = new SourceList<T>();
+var observableChanges= list.AsObservableChangSet();
+//or
+var observableChanges= list.AsObservableChangSet(t=>t.Key);
+```
 ### What are the benefits of the integration between Dynamic Data and ReactiveUI
 
-Dynamic data has in the region of 50 collection specific operators and ReactiveUI rocks so why not get the best of both worlds. Look at the following code.
+The cache part of dynamic data has about 60 operators and the list side has about 35 operators and counting
 
 ```csharp
-var list = new ReactiveList<TradeProxy>();
-var myoperation = somedynamicdatasource
+var myoperation = dataSource
 					.Filter(trade=>trade.Status == TradeStatus.Live) 
 					.Transform(trade => new TradeProxy(trade))
 					.Sort(SortExpressionComparer<TradeProxy>.Descending(t => t.Timestamp))
 					.ObserveOn(RxApp.MainThreadScheduler)
-					.Bind(list) //This is the magic which updates the list with the observable
+					.Bind(myReactiveList) //an instance of
 					.DisposeMany()
 					.Subscribe()
 ```
@@ -30,19 +56,69 @@ As ```somedynamicdatasource``` changes the results are filtered by live trades, 
 
 That was easy, declarative and powerful.
 
-Alternatively another root into the dynamic data sub system would be as follows:
+###So what else can it do
+
+In all the examples, for readabilty I have ommited the ```datasource.Connect()``` method. All the operators are fluent and composable.
+
+#### Group
 ```csharp
-var list = new ReactiveList<TradeProxy>();
-var myoperation = list.ToObservableChangeSet()
-                     .Filter(trade=>trade.Status == TradeStatus.Live) 
-                     // ... etc
+var myoperation = somedynamicdatasource
+            .GroupOn(person=>person.Status) 
+			.Subscribe(changeSet=>//do something with the groups)
 ```
-Ok, I know ReactiveUI has DerivedReactiveList but dynamic data is DerivedReactiveList on steriods. Binding is just a small part of it.
+#### Transformation
 
-I will as soon as I get the time document everything. In the meantime I have started putting together a wpf demo to illustate the usage and the capability of dynamic data https://github.com/RolandPheasant/TradingDemo
+```csharp
+//transform many to flatten a child enumerable
+var myoperation = somedynamicdatasource.TransformMany(person=>person.Children) 
 
+//transform many to flatten a child enumerable
+var myoperation = somedynamicdatasource.Transform(person=>new PersonProxy(person)) 
+```
 
+#### Aggregation
 
+if we have a a list of people we can aggregate as follows
+```csharp
+var people= new SourceList<Person>();
+var observable = people.Connect();
 
+var count= observable.Count();
+var max= observable.Max(p=>p.Age);
+var min= observable.Min(p=>p.Age);
+var stdDev= observable.StdDev(p=>p.Age);
+```
 
+#### Join operators
 
+There are And, Or and Except logical operators
+```csharp
+var peopleA= new SourceCache<Person,string>(p=>p.Name);
+var peopleB= new SourceCache<Person,string>(p=>p.Name);
+var observableA = people.Connect();
+var observableB = people.Connect();
+
+var inBoth = observableA.And(observableB );
+var inEither= observableA.Or(observableB );
+var inAandNotinB = observableA.Except(observableB);
+```
+
+#### Virtualisation
+
+There are Virtualise, Page and Top operators
+
+```csharp
+//virtualise
+var controller =  new VirtualisingController(new VirtualRequest(0,25));
+var myoperation = somedynamicdatasource.Virtualise(controller)
+
+//Top (overload of virtualise)
+var myoperation = somedynamicdatasource.Top(10)
+
+//page
+var controller =  new PageController(new PageRequest(1,25));
+var myoperation = somedynamicdatasource.Page(controller)
+```
+The parameters of the  controllers above can be changes any time to force a re-evaluation.
+
+Plus much much more...
