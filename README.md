@@ -69,7 +69,7 @@ var myoperation = somedynamicdatasource
 //transform many to flatten a child enumerable
 var myoperation = somedynamicdatasource.TransformMany(person=>person.Children) 
 
-//transform many to flatten a child enumerable
+//Map to a proxy object
 var myoperation = somedynamicdatasource.Transform(person=>new PersonProxy(person)) 
 ```
 
