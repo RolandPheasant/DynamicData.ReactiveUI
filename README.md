@@ -37,7 +37,7 @@ Integration of dynamic data and reactive ui is as easy as that.
 
 ### What are the benefits of the integration between Dynamic Data and ReactiveUI
 
-The cache part of dynamic data has about 60 operators and the list side has about 35 operators and counting
+The cache part of dynamic data has about 60 operators and the list side has about 35 operators and counting. There operators are fluent and can be easily combined to form very powerful operations with very simple code. This first example illustrates binding a complex observable to a reactive list.
 
 ```csharp
 var myoperation = observableChanges
