@@ -20,7 +20,7 @@ or create an observable cache.
 var cache = new SourceCache<TObject,TKey>(t=>t.Key);
 var observableChanges = cache.Connect();
 ```
-and that is that. You have a thread safe data source which either of which become observable by calling ```.Connect()```. The connect method has dozens of collection specified composable and fluent operators.
+and that is that. You have a thread safe data source which is converted into an observable by calling ```.Connect()```. The connect method has dozens of collection specified composable and fluent operators.
 
 ###  Create a dynamic data source from  ReactiveList
 
