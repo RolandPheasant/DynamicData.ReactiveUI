@@ -5,8 +5,8 @@
 
 This library plugs dynamic data into reactive ui to give you the power the power of both.
 
-[ReactiveUI on GitHub](https://github.com/reactiveui/ReactiveUI)
-[Dynamic Data on GitHub](https://github.com/RolandPheasant/DynamicData) 
+- [ReactiveUI on GitHub](https://github.com/reactiveui/ReactiveUI)
+- [Dynamic Data on GitHub](https://github.com/RolandPheasant/DynamicData) 
 
 ###  Create a dynamic data source
 
