@@ -1,20 +1,12 @@
-
-## Dynamic Data / ReactiveUI Integration
-
-
-Contact me any time on [![Join the chat at https://gitter.im/RolandPheasant/DynamicData](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RolandPheasant/DynamicData?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-Master build [![Build status](https://ci.appveyor.com/api/projects/status/22ywek7rlteq28go/branch/develop?svg=true)](https://ci.appveyor.com/project/RolandPheasant/dynamicdata-reactiveui/branch/develop)
-Sample wpf project https://github.com/RolandPheasant/Dynamic.Trader
-Blog at  http://dynamic-data.org/
-Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
-
-
 ### What is this library?
 
-[ReactiveUI](https://github.com/reactiveui/ReactiveUI) is a powerful MVVM framework based on Rx.
-[Dynamic Data](https://github.com/RolandPheasant/DynamicData) is a portable class library based on Rx and provides an observable list and an observable cache. There have a very rich set of collection specific operators.
+**ReactiveUI** is a powerful MVVM framework based on Rx. 
+**Dynamic Data** is a portable class library based on Rx and provides an observable list and an observable cache. There are a very rich set of collection specific operators.
 
 This library plugs dynamic data into reactive ui to give you the power the power of both.
+
+[ReactiveUI on GitHub](https://github.com/reactiveui/ReactiveUI)
+[Dynamic Data on GitHub](https://github.com/RolandPheasant/DynamicData) 
 
 ###  Create a dynamic data source
 
@@ -34,16 +26,21 @@ and that is that. You have a thread safe data source which either of which becom
 
 ```
 var list = new SourceList<T>();
-var observableChanges= list.AsObservableChangSet();
-//or
-var observableChanges= list.AsObservableChangSet(t=>t.Key);
 ```
+Now create a cache source or a list source as follows
+```
+var observableChanges= list.ToObservableChangSet();
+//or
+var observableChanges= list.ToObservableChangSet(t=>t.Key);
+```
+Integration of dynamic data and reactive ui is as easy as that. 
+
 ### What are the benefits of the integration between Dynamic Data and ReactiveUI
 
 The cache part of dynamic data has about 60 operators and the list side has about 35 operators and counting
 
 ```csharp
-var myoperation = dataSource
+var myoperation = observableChanges
 					.Filter(trade=>trade.Status == TradeStatus.Live) 
 					.Transform(trade => new TradeProxy(trade))
 					.Sort(SortExpressionComparer<TradeProxy>.Descending(t => t.Timestamp))
@@ -95,11 +92,11 @@ There are And, Or and Except logical operators
 ```csharp
 var peopleA= new SourceCache<Person,string>(p=>p.Name);
 var peopleB= new SourceCache<Person,string>(p=>p.Name);
-var observableA = people.Connect();
-var observableB = people.Connect();
+var observableA = peopleA.Connect();
+var observableB = peopleB.Connect();
 
-var inBoth = observableA.And(observableB );
-var inEither= observableA.Or(observableB );
+var inBoth = observableA.And(observableB);
+var inEither= observableA.Or(observableB);
 var inAandNotinB = observableA.Except(observableB);
 ```
 
@@ -122,3 +119,11 @@ var myoperation = somedynamicdatasource.Page(controller)
 The parameters of the  controllers above can be changes any time to force a re-evaluation.
 
 Plus much much more...
+
+### Some links to get going
+
+- Contact me any time on [![Join the chat at https://gitter.im/RolandPheasant/DynamicData](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RolandPheasant/DynamicData?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+- Master build [![Build status](https://ci.appveyor.com/api/projects/status/22ywek7rlteq28go/branch/develop?svg=true)](https://ci.appveyor.com/project/RolandPheasant/dynamicdata-reactiveui/branch/develop)
+- Sample wpf project https://github.com/RolandPheasant/Dynamic.Trader
+- Blog at  http://dynamic-data.org/
+- Get it from https://www.nuget.org/packages/DynamicData.ReactiveUI
