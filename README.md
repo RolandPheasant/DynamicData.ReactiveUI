@@ -41,13 +41,13 @@ The cache part of dynamic data has about 60 operators and the list side has abou
 
 ```csharp
 var myoperation = observableChanges
-					.Filter(trade=>trade.Status == TradeStatus.Live) 
-					.Transform(trade => new TradeProxy(trade))
-					.Sort(SortExpressionComparer<TradeProxy>.Descending(t => t.Timestamp))
-					.ObserveOn(RxApp.MainThreadScheduler)
-					.Bind(myReactiveList) //an instance of
-					.DisposeMany()
-					.Subscribe()
+			.Filter(trade=>trade.Status == TradeStatus.Live) 
+			.Transform(trade => new TradeProxy(trade))
+			.Sort(SortExpressionComparer<TradeProxy>.Descending(t => t.Timestamp))
+			.ObserveOn(RxApp.MainThreadScheduler)
+			.Bind(myReactiveList) //an instance of a reactive list
+			.DisposeMany()
+			.Subscribe()
 ```
 As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
@@ -116,7 +116,7 @@ var myoperation = somedynamicdatasource.Top(10)
 var controller =  new PageController(new PageRequest(1,25));
 var myoperation = somedynamicdatasource.Page(controller)
 ```
-The parameters of the  controllers above can be changes any time to force a re-evaluation.
+The parameters of the controllers above can be changes any time to force a re-evaluation.
 
 Plus much much more...
 
