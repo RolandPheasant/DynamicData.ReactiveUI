@@ -1,7 +1,7 @@
 ### What is this library?
 
 **ReactiveUI** is a powerful MVVM framework based on Rx. 
-**Dynamic Data** is a portable class library based on Rx and provides an observable list and an observable cache. There are a very rich set of collection specific operators.
+**Dynamic Data** is a portable class library based on Rx and provides an observable list and an observable cache. The dynamic data collections come with a very rich set of collection specific operators.
 
 This library plugs dynamic data observables into reactive ui
 
