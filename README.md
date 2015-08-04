@@ -51,6 +51,8 @@ var myoperation = observableChanges
 ```
 As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
+And of course the main point of this example the results are relected on the reactive list using the ```.Bind()``` method.
+
 That was easy, declarative and powerful.
 
 ###So what else can it do
