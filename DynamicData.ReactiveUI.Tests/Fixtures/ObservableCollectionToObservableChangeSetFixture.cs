@@ -7,7 +7,7 @@ using ReactiveUI;
 namespace DynamicData.ReactiveUI.Tests.Fixtures
 {
 	[TestFixture]
-    public class ObservableCollectionToObservableChangeSetFixture
+    public class ObservableCollectionToListFixture
     {
         private ReactiveList<Person> _collection;
         private ChangeSetAggregator<Person, string> _results;
@@ -79,6 +79,18 @@ namespace DynamicData.ReactiveUI.Tests.Fixtures
             Assert.AreEqual(10, update11.Removes, "Should be 10 removes");
             Assert.AreEqual(10, update11.Adds, "Should be 10 adds");
             Assert.AreEqual(10, _results.Data.Count, "Should be 10 items in the cache");
+        }
+
+        [Test]
+        public void Move()
+        {  
+            var source = new ReactiveList<int>();
+            var result = source.ToObservableChangeSet().AsObservableList();
+            source.AddRange(Enumerable.Range(1, 10));
+
+            Assert.AreEqual(source.ToArray(), result.Items);
+            source.Move(5, 8);
+            Assert.AreEqual(source.ToArray(), result.Items);
         }
 
     }

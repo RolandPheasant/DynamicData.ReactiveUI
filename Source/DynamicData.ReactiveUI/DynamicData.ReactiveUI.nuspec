@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>DynamicData.ReactiveUI</id>
-	<version>$version$</version>
+	  <version>$version$</version>
     <title>Dynamic Data adaptors for ReactiveUI</title>
     <authors>Roland Pheasant</authors>
     <copyright>Roland Pheasant</copyright>
@@ -11,7 +11,8 @@
     <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
-      Make reactive ui even more powerful by integrating with dynamic data and making use of it's numerious operators. Dynamic data provides an observable cache and an observable list with at least 50 collection specific operators for each.
+      Make reactive ui even more powerful by integrating with dynamic data and making use of it's numerious operators. 
+      Dynamic data provides an observable cache and an observable list with at least 50 collection specific operators for each.
     </description>
 	  <summary>
 		  Integrate dynamic data observables with ReactiveUI

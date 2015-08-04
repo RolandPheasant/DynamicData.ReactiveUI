@@ -12,7 +12,7 @@ namespace DynamicData.ReactiveUI
     public class ReactiveListAdaptor<TObject> : IChangeSetAdaptor<TObject>
     {
         private bool _loaded;
-        private readonly IReactiveList<TObject> _target;
+        private readonly ReactiveList<TObject> _target;
         private readonly int _resetThreshold;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DynamicData.ReactiveUI
         /// <exception cref="System.ArgumentNullException">target</exception>
         public ReactiveListAdaptor(ReactiveList<TObject> target, int resetThreshold = 50)
         {
-            if (target == null) throw new ArgumentNullException("target");
+            if (target == null) throw new ArgumentNullException(nameof(target));
             _target = target;
             _resetThreshold = resetThreshold;
         }
@@ -39,7 +39,7 @@ namespace DynamicData.ReactiveUI
             {
                 using (_target.SuppressChangeNotifications())
                 {
-                    _target.Clone(changes);
+                    _target.CloneReactiveList(changes);
                     _loaded = true;
                 }
             }
@@ -70,7 +70,7 @@ namespace DynamicData.ReactiveUI
         /// <exception cref="System.ArgumentNullException">target</exception>
         public ReactiveListAdaptor(ReactiveList<TObject> target, int resetThreshold = 50)
         {
-            if (target == null) throw new ArgumentNullException("target");
+            if (target == null) throw new ArgumentNullException(nameof(target));
             _target = target;
             _resetThreshold = resetThreshold;
         }
