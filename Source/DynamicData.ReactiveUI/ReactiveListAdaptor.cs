@@ -45,7 +45,7 @@ namespace DynamicData.ReactiveUI
             }
             else
             {
-                _target.Clone(changes);
+                _target.CloneReactiveList(changes);
             }
         }
     }

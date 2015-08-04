@@ -73,6 +73,22 @@ namespace DynamicData.ReactiveUI.Tests.Fixtures
         }
 
         [Test]
+        public void InsertRange()
+        {
+            var people = _generator.Take(100).ToList();
+            _source.AddRange(people);
+
+            var morePeople = _generator.Take(100).ToList();
+            _source.InsertRange(morePeople,50);
+
+
+
+
+            Assert.AreEqual(200, _collection.Count, "Should be 200 items in the collection");
+            CollectionAssert.AreEquivalent(_collection.Skip(50).Take(100), morePeople, "Collections should be equivalent");
+        }
+
+        [Test]
         public void Clear()
         {
             var people = _generator.Take(100).ToList();
