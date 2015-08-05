@@ -1,7 +1,7 @@
 ### What is this library?
 
 **ReactiveUI** is a powerful MVVM framework based on Rx. 
-**Dynamic Data** is a portable class library based on Rx and provides an observable list and an observable cache. The dynamic data collections come with a very rich set of collection specific operators.
+**Dynamic Data** is a portable class library based on Rx and provides an observable list and an observable cache. These collections come with a very rich set of collection specific observable operators.
 
 This library plugs dynamic data observables into reactive ui
 
@@ -13,21 +13,23 @@ This library plugs dynamic data observables into reactive ui
 Create an observable list.
 ```
 var list = new SourceList<T>();
+//create an observable changeset
 var observableChanges = list.Connect();
 ```
 or create an observable cache.
 ```
 var cache = new SourceCache<TObject,TKey>(t=>t.Key);
+//create an observable changeset
 var observableChanges = cache.Connect();
 ```
 and that is that. You have a thread safe data source which is converted into an observable by calling ```.Connect()```. The connect method has dozens of collection specified composable and fluent operators.
 
 ###  Create a dynamic data source from  ReactiveList
-
+Another way to create a dynamic data source is directly from a reactive list.
 ```
-var list = new SourceList<T>();
+var list = new ReactiveList<T>();
 ```
-Now create a cache source or a list source as follows
+From this list create a cache source or a list source as follows
 ```
 var observableChanges= list.ToObservableChangSet();
 //or
@@ -49,9 +51,9 @@ var myoperation = observableChanges
 			.DisposeMany()
 			.Subscribe()
 ```
-As ```somedynamicdatasource``` changes the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
+As changes in ```observableChanges``` are received the results are filtered by live trades, transformed into a proxy, put into a sort order and the reactive list will exactly reflect all this. When a tradeproxy is removed from the observable it is disposed and when  ```myoperation``` is disposed, all trade proxys are disposed.
 
-And of course the main point of this example the results are reflected on the reactive list using the ```.Bind()``` method.
+And of course the main point of this example is the result on any chain of operators can be reflected on the reactive list using the ```.Bind()``` method.
 
 That was easy, declarative and powerful.
 
@@ -60,19 +62,23 @@ That was easy, declarative and powerful.
 In all the examples, for readabilty I have ommited the ```datasource.Connect()``` method. All the operators are fluent and composable.
 
 #### Group
+Grouping is easily achieved as follows.
 ```csharp
 var myoperation = somedynamicdatasource
-            .GroupOn(person=>person.Status) 
-	    .Subscribe(changeSet=>//do something with the groups)
+	         .GroupOn(person=>person.Status) 
+			 .Subscribe(changeSet=>//do something with the groups)
 ```
 #### Transformation
-
+Dynamic data has several transformative operators
 ```csharp
+//Map to a proxy object
+var myoperation = somedynamicdatasource.Transform(person=>new PersonProxy(person)) 
+
 //transform many to flatten a child enumerable
 var myoperation = somedynamicdatasource.TransformMany(person=>person.Children) 
 
-//Map to a proxy object
-var myoperation = somedynamicdatasource.Transform(person=>new PersonProxy(person)) 
+//Create a fully formed reactibe tree
+var myoperation = somedynamicdatasource.TransformToTree(person=>person.BossId) 
 ```
 
 #### Aggregation
