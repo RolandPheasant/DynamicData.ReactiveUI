@@ -218,16 +218,12 @@ namespace DynamicData.ReactiveUI
                             {
                                 if (startingIndex >= 0)
                                 {
-                                    item.Range.ForEach((t, i) =>
-                                    {
-                                        source.Insert(i+startingIndex,t);
-                                    });
+                                    item.Range.Reverse().ForEach(t => source.Insert(startingIndex, t));
                                 }
                                 else
                                 {
                                     item.Range.ForEach(source.Add);
                                 }
-
                             }
 
                             break;
@@ -250,7 +246,6 @@ namespace DynamicData.ReactiveUI
                             }
                             else
                             {
-                                //is this best? or replace + move?
                                 source.RemoveAt(change.PreviousIndex);
                                 source.Insert(change.CurrentIndex, change.Current);
                             }
@@ -273,13 +268,13 @@ namespace DynamicData.ReactiveUI
 
                     case ListChangeReason.RemoveRange:
                         {
-                            if (RxApp.SupportsRangeNotifications)
+                            if (RxApp.SupportsRangeNotifications && item.Range.Index>=0)
                             {
                                 source.RemoveRange(item.Range.Index, item.Range.Count);
                             }
                             else
                             {
-                                item.Range.ForEach(t => source.Remove(t));
+                                source.RemoveMany(item.Range);
                             }
                         }
                         break;

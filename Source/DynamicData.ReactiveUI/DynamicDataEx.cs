@@ -29,7 +29,7 @@ namespace DynamicData.ReactiveUI
             if (source == null) throw new ArgumentNullException("source");
             if (targetCollection == null) throw new ArgumentNullException("targetCollection");
 
-            var adaptor = new ReactiveListAdaptor<T>(targetCollection, resetThreshold);
+            var adaptor = new ObservableListToReactiveListAdaptor<T>(targetCollection, resetThreshold);
             return source.Adapt(adaptor);
         }
 
@@ -54,7 +54,7 @@ namespace DynamicData.ReactiveUI
             if (source == null) throw new ArgumentNullException("source");
             if (target == null) throw new ArgumentNullException("target");
 
-            var adaptor = new ReactiveListAdaptor<TObject, TKey>(target, resetThreshold);
+            var adaptor = new ObservableCacheToReactiveListAdaptor<TObject, TKey>(target, resetThreshold);
             return source.Bind(adaptor);
 
         }
