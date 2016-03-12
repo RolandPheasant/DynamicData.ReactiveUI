@@ -32,12 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicData, Version=4.2.0.1068, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicData.4.2.0.1068\lib\net45\DynamicData.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamicData.Plinq, Version=4.2.0.1068, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicData.4.2.0.1068\lib\net45\DynamicData.Plinq.dll</HintPath>
+    <Reference Include="DynamicData, Version=4.5.0.1112, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicData.4.5.0.1112\lib\net45\DynamicData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
