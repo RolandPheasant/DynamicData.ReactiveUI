@@ -45,8 +45,8 @@
     <Compile Include="SortedReactiveListAdaptor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DynamicData, Version=4.2.0.1068, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DynamicData.4.2.0.1068\lib\portable-net45+win+wpa81+wp80\DynamicData.dll</HintPath>
+    <Reference Include="DynamicData, Version=4.6.0.1132, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DynamicData.4.6.0.1132\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\DynamicData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReactiveUI">
