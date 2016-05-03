@@ -79,6 +79,7 @@
     <Compile Include="Fixtures\BindSortedChangeSetFixture.cs" />
     <Compile Include="Fixtures\ObservableCollectionToObservableChangeSetFixture.cs" />
     <Compile Include="Fixtures\ObservableCollectionToObservableChangeSetWithoutINdexFixture.cs" />
+    <Compile Include="Fixtures\XXXX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
