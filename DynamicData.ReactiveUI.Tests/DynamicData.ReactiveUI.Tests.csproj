@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicData, Version=4.6.0.1132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicData.4.6.0.1132\lib\net45\DynamicData.dll</HintPath>
+    <Reference Include="DynamicData, Version=4.8.1.1181, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicData.4.8.1.1181\lib\net45\DynamicData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -79,7 +79,6 @@
     <Compile Include="Fixtures\BindSortedChangeSetFixture.cs" />
     <Compile Include="Fixtures\ObservableCollectionToObservableChangeSetFixture.cs" />
     <Compile Include="Fixtures\ObservableCollectionToObservableChangeSetWithoutINdexFixture.cs" />
-    <Compile Include="Fixtures\XXXX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
