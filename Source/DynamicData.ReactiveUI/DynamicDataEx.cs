@@ -26,8 +26,8 @@ namespace DynamicData.ReactiveUI
         public static IObservable<IChangeSet<T>> Bind<T>([NotNull] this IObservable<IChangeSet<T>> source,
             [NotNull] ReactiveList<T> targetCollection, int resetThreshold = 25)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (targetCollection == null) throw new ArgumentNullException("targetCollection");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (targetCollection == null) throw new ArgumentNullException(nameof(targetCollection));
 
             var adaptor = new ObservableListToReactiveListAdaptor<T>(targetCollection, resetThreshold);
             return source.Adapt(adaptor);
@@ -51,8 +51,8 @@ namespace DynamicData.ReactiveUI
         public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source, ReactiveList<TObject> target,
             int resetThreshold = 25)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (target == null) throw new ArgumentNullException("target");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (target == null) throw new ArgumentNullException(nameof(target));
 
             var adaptor = new ObservableCacheToReactiveListAdaptor<TObject, TKey>(target, resetThreshold);
             return source.Bind(adaptor);
@@ -71,8 +71,8 @@ namespace DynamicData.ReactiveUI
         public static IObservable<IChangeSet<TObject, TKey>> Bind<TObject, TKey>(this IObservable<IChangeSet<TObject, TKey>> source,
             IChangeSetAdaptor<TObject, TKey> updater)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (updater == null) throw new ArgumentNullException("updater");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (updater == null) throw new ArgumentNullException(nameof(updater));
 
             return Observable.Create<IChangeSet<TObject, TKey>>
                 (observer =>
@@ -144,8 +144,8 @@ namespace DynamicData.ReactiveUI
             this IObservable<ISortedChangeSet<TObject, TKey>> source,
             ISortedChangeSetAdaptor<TObject, TKey> updater)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (updater == null) throw new ArgumentNullException("updater");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (updater == null) throw new ArgumentNullException(nameof(updater));
 
             return Observable.Create<ISortedChangeSet<TObject, TKey>>
                 (observer =>
