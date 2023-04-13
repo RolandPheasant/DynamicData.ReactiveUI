@@ -1,3 +1,20 @@
+## NOTE FROM A STRAY TRAVELER
+
+I just discovered DynamicData and ReactiveUI (I know I am late to the party), wanted to use them, then found this repo but was disappointed to find it neglected.
+
+I started going down the road of forking it and try porting or at least understanding it myself so I could salvage any useful concepts, only to hit a compile error and find ReactiveList was removed from ReactiveUI in favor of....DynamicData!
+
+Here are some helpful links for other developers who might be on the same journey:
+ - https://www.reactiveui.net/blog/2018/08/deprecated-reactive-list
+ - https://github.com/reactiveui/ReactiveUI/issues/1372
+ - https://github.com/reactivemarbles/DynamicData/wiki/Introduction-for-ReactiveUI-users
+
+Regards,
+
+A Stray Traveler
+
+---
+
 ### What is this library?
 
 **ReactiveUI** is a powerful MVVM framework based on Rx. 
